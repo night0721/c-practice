@@ -4,6 +4,7 @@
 
 int getLine();
 
+
 char* copy();
 
 int main() {
