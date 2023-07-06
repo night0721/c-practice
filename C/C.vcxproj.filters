@@ -27,5 +27,14 @@
     <ClCompile Include="Recursion.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Args.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Pointers.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="String.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
