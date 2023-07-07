@@ -129,9 +129,15 @@
   <ItemGroup>
     <ClCompile Include="Args.c" />
     <ClCompile Include="Cars.c" />
+    <ClCompile Include="Colour.c" />
     <ClCompile Include="Flirt.c" />
+    <ClCompile Include="Input.c" />
     <ClCompile Include="Iteration.c" />
+    <ClCompile Include="LinkedList.c" />
+    <ClCompile Include="Pointers.c" />
+    <ClCompile Include="Random.c" />
     <ClCompile Include="Recursion.c" />
+    <ClCompile Include="String.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

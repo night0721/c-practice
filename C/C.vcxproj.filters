@@ -36,5 +36,17 @@
     <ClCompile Include="String.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Input.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LinkedList.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Random.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Colour.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
