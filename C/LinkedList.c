@@ -39,12 +39,14 @@ int main() {
 	list->next->next = n;
 	int i = 3;
 
-	printf("hello");
-	Sleep(500);
-	//printf("\r          ");
-	printf("\rbyeww\n");
 	for (node *tmp = list; tmp != NULL; tmp = tmp->next) {
 		printf("%i\n", tmp->number);
 	}
 
+	// free list
+	while (list != NULL) {
+		node *tmp = list->next;
+		free(list);
+		list = tmp;
+	}
 }
