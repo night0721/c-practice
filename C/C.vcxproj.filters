@@ -63,9 +63,6 @@
     <ClCompile Include="Night.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="nky.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="json.h">

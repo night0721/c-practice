@@ -138,7 +138,6 @@
     <ClCompile Include="json.c" />
     <ClCompile Include="LinkedList.c" />
     <ClCompile Include="Night.c" />
-    <ClCompile Include="nky.c" />
     <ClCompile Include="Pointers.c" />
     <ClCompile Include="Random.c" />
     <ClCompile Include="Recursion.c" />
