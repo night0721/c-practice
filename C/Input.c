@@ -3,7 +3,7 @@
 #include<windows.h>
 #include<winuser.h>
 #include<wincon.h>
-#include <stdbool.h>
+#include<stdbool.h>
 
 #define ANSI_COLOR_RED     "\x1b[31m"
 #define ANSI_COLOR_GREEN   "\x1b[32m"
@@ -73,4 +73,5 @@ int main() {
 		}
     }
     printf("Press any key to continue...");
+
 }

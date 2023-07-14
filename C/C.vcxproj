@@ -131,13 +131,22 @@
     <ClCompile Include="Cars.c" />
     <ClCompile Include="Colour.c" />
     <ClCompile Include="Flirt.c" />
+    <ClCompile Include="gui.c" />
+    <ClCompile Include="IG.c" />
     <ClCompile Include="Input.c" />
     <ClCompile Include="Iteration.c" />
+    <ClCompile Include="json.c" />
     <ClCompile Include="LinkedList.c" />
+    <ClCompile Include="Night.c" />
+    <ClCompile Include="nky.c" />
     <ClCompile Include="Pointers.c" />
     <ClCompile Include="Random.c" />
     <ClCompile Include="Recursion.c" />
+    <ClCompile Include="sd.c" />
     <ClCompile Include="String.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="json.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
