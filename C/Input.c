@@ -19,7 +19,7 @@ int main() {
     int length = (int)(sizeof(user) / sizeof(user[0]));
     int current = 0;
     bool first = true;
-
+    
     printf(ANSI_COLOR_CYAN "Choose a driver" ANSI_COLOR_RESET " (Use arrow keys to choose, 'q' to quit)\n");
 
     for (int i = 0; i < length; i++) {

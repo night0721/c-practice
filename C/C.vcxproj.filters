@@ -54,18 +54,30 @@
     <ClCompile Include="json.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="gui.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sd.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Night.c">
+    <ClCompile Include="registry.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="http.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="w.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="util.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="json.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="util.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="registry.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -104,10 +104,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\curl\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\curl\lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -131,21 +133,25 @@
     <ClCompile Include="Cars.c" />
     <ClCompile Include="Colour.c" />
     <ClCompile Include="Flirt.c" />
-    <ClCompile Include="gui.c" />
+    <ClCompile Include="http.c" />
     <ClCompile Include="IG.c" />
     <ClCompile Include="Input.c" />
     <ClCompile Include="Iteration.c" />
     <ClCompile Include="json.c" />
     <ClCompile Include="LinkedList.c" />
-    <ClCompile Include="Night.c" />
+    <ClCompile Include="registry.c" />
     <ClCompile Include="Pointers.c" />
     <ClCompile Include="Random.c" />
     <ClCompile Include="Recursion.c" />
     <ClCompile Include="sd.c" />
     <ClCompile Include="String.c" />
+    <ClCompile Include="util.c" />
+    <ClCompile Include="w.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="json.h" />
+    <ClInclude Include="registry.h" />
+    <ClInclude Include="util.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
