@@ -130,28 +130,34 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Args.c" />
-    <ClCompile Include="Cars.c" />
-    <ClCompile Include="Colour.c" />
+    <ClCompile Include="browser.c" />
+    <ClCompile Include="colour.h" />
+    <ClCompile Include="dir.c" />
+    <ClCompile Include="Driver\driver.c" />
     <ClCompile Include="Flirt.c" />
     <ClCompile Include="http.c" />
     <ClCompile Include="IG.c" />
-    <ClCompile Include="Input.c" />
-    <ClCompile Include="Iteration.c" />
+    <ClCompile Include="Driver\main.c" />
     <ClCompile Include="json.c" />
+    <ClCompile Include="keyboard.c" />
     <ClCompile Include="LinkedList.c" />
-    <ClCompile Include="registry.c" />
+    <ClCompile Include="nky.c" />
     <ClCompile Include="Pointers.c" />
     <ClCompile Include="Random.c" />
     <ClCompile Include="Recursion.c" />
-    <ClCompile Include="sd.c" />
     <ClCompile Include="String.c" />
+    <ClCompile Include="ack.c" />
     <ClCompile Include="util.c" />
     <ClCompile Include="w.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Driver\driver.h" />
     <ClInclude Include="json.h" />
-    <ClInclude Include="registry.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="util.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="C.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
