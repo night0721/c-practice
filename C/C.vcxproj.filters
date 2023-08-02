@@ -30,16 +30,10 @@
     <ClCompile Include="String.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Driver\Input.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="LinkedList.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Random.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Colour.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="IG.c">
@@ -48,13 +42,7 @@
     <ClCompile Include="json.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sd.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="http.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="w.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="util.c">
@@ -69,7 +57,19 @@
     <ClCompile Include="Driver\driver.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tray.c">
+    <ClCompile Include="browser.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="colour.h">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Driver\main.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="nky.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ack.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -83,13 +83,5 @@
     <ClInclude Include="Driver\driver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="C.rc">
-      <Filter>Resource Files</Filter>
-    </ResourceCompile>
   </ItemGroup>
 </Project>

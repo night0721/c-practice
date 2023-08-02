@@ -148,16 +148,11 @@
     <ClCompile Include="String.c" />
     <ClCompile Include="ack.c" />
     <ClCompile Include="util.c" />
-    <ClCompile Include="w.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Driver\driver.h" />
     <ClInclude Include="json.h" />
-    <ClInclude Include="resource.h" />
     <ClInclude Include="util.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="C.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
