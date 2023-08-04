@@ -129,7 +129,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Args.c" />
     <ClCompile Include="browser.c" />
     <ClCompile Include="colour.h" />
     <ClCompile Include="dir.c" />

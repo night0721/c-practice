@@ -16,6 +16,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/stat.h>
+#include <string.h>
 
 static void print_depth_shift(int depth)
 {
@@ -48,7 +49,7 @@ static void process_array(json_value* value, int depth)
         return;
     }
     length = value->u.array.length;
-    printf("array\n");
+    //printf("array\n");
     for (x = 0; x < length; x++) {
         process_value(value->u.array.values[x], depth);
     }
@@ -82,11 +83,32 @@ static void process_value(json_value* value, int depth)
         printf("double: %f\n", value->u.dbl);
         break;
     case json_string:
-        printf("string: %s\n", value->u.string.ptr);
+        //printf("string: %s\n", value->u.string.ptr);
         break;
     case json_boolean:
         printf("bool: %d\n", value->u.boolean);
         break;
+    }
+}
+
+static void compare_array(json_value* prev_array, json_value* current_array, const char* action)
+{
+    for (int i = 0; i < prev_array->u.array.length; i++)
+    {
+        const char* user = prev_array->u.array.values[i]->u.string.ptr;
+        int found = 0;
+        for (int j = 0; j < current_array->u.array.length; j++)
+        {
+            if (strcmp(user, current_array->u.array.values[j]->u.string.ptr) == 0)
+            {
+                found = 1;
+                break;
+            }
+        }
+        if (!found)
+        {
+            printf("%s %s you.\n", user, action);
+        }
     }
 }
 
@@ -133,12 +155,7 @@ int main(int argc, char** argv)
     }
     fclose(fp);
 
-    printf("%s\n", file_contents);
-
-    printf("--------------------------------\n\n");
-
     json = (json_char*)file_contents;
-
     value = json_parse(json, file_size);
 
     if (value == NULL) {
@@ -147,7 +164,53 @@ int main(int argc, char** argv)
         exit(1);
     }
 
-    process_value(value, 0);
+    
+    json_value* current_followers = NULL;
+    json_value* current_following = NULL;
+    json_value* prev_followers = NULL;
+    json_value* prev_following = NULL;
+
+
+    for (int i = 0; i < value->u.object.length; i++)
+    {
+        const char* date_key = value->u.object.values[i].name;
+        json_value* data = value->u.object.values[i].value;
+
+        json_value* current_followers = NULL;
+        json_value* current_following = NULL;
+
+        for (int j = 0; j < data->u.object.length; j++)
+        {
+            const char* type_key = data->u.object.values[j].name;
+            json_value* type_data = data->u.object.values[j].value;
+            if (strcmp(type_key, "followers") == 0)
+            {
+                current_followers = type_data;
+                process_array(current_followers, 0);
+
+                if (prev_followers != NULL)
+                {
+                    compare_array(prev_followers, current_followers, "unfollowed");
+                    compare_array(current_followers, prev_followers, "followed");
+                }
+            }
+            else if (strcmp(type_key, "following") == 0)
+            {
+                current_following = type_data;
+                process_array(current_following, 0);
+
+                if (prev_following != NULL)
+                {
+                    compare_array(prev_following, current_following, "unfollowed");
+                    compare_array(current_following, prev_following, "followed");
+                }
+            }
+        }
+
+        // Update prev_followers and prev_following after processing each date
+        prev_followers = current_followers;
+        prev_following = current_following;
+    }
 
     json_value_free(value);
     free(file_contents);
