@@ -140,9 +140,7 @@
     <ClCompile Include="keyboard.c" />
     <ClCompile Include="LinkedList.c" />
     <ClCompile Include="nky.c" />
-    <ClCompile Include="Pointers.c" />
     <ClCompile Include="Random.c" />
-    <ClCompile Include="Recursion.c" />
     <ClCompile Include="String.c" />
     <ClCompile Include="ack.c" />
     <ClCompile Include="lib\util.c" />

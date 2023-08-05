@@ -18,12 +18,6 @@
     <ClCompile Include="Flirt.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Recursion.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Pointers.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="String.c">
       <Filter>Source Files</Filter>
     </ClCompile>
