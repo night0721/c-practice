@@ -129,6 +129,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="gui.c" />
     <ClCompile Include="lib\colour.h" />
     <ClCompile Include="dir.c" />
     <ClCompile Include="Flirt.c" />
