@@ -4,13 +4,21 @@
 
 #pragma comment(lib, "Winhttp.lib")
 
-int main() {
+    int main() {
     HINTERNET hSession = NULL, hConnect = NULL, hRequest = NULL;
 
     // Initialize WinHTTP session
     hSession = WinHttpOpen(L"WinHTTP Example/1.0", WINHTTP_ACCESS_TYPE_DEFAULT_PROXY, WINHTTP_NO_PROXY_NAME, WINHTTP_NO_PROXY_BYPASS, 0);
     if (!hSession) {
         printf("Error: WinHttpOpen failed (%d)\n", GetLastError());
+        return 1;
+    }
+
+    // Set the redirect policy to automatically follow redirects
+    DWORD redirectPolicy = WINHTTP_OPTION_REDIRECT_POLICY_ALWAYS;
+    if (!WinHttpSetOption(hSession, WINHTTP_OPTION_REDIRECT_POLICY, &redirectPolicy, sizeof(redirectPolicy))) {
+        printf("Error: WinHttpSetOption failed (%d)\n", GetLastError());
+        WinHttpCloseHandle(hSession);
         return 1;
     }
 
@@ -65,3 +73,4 @@ int main() {
 
     return 0;
 }
+

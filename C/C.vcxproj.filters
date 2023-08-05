@@ -42,7 +42,7 @@
     <ClCompile Include="http.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="util.c">
+    <ClCompile Include="lib\util.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="dir.c">
@@ -51,13 +51,10 @@
     <ClCompile Include="keyboard.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Driver\driver.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="browser.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="colour.h">
+    <ClCompile Include="lib\colour.h">
       <Filter>Header Files</Filter>
     </ClCompile>
     <ClCompile Include="Driver\main.c">
@@ -74,7 +71,7 @@
     <ClInclude Include="lib\json\json.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="util.h">
+    <ClInclude Include="lib\util.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Driver\driver.h">
