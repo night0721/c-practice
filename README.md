@@ -4,12 +4,13 @@
   <summary>
     nky.c => CLI Tool to perform usual commands
   </summary>
-  <p align="center">
+  <p>
     Commands:
-    
-    ```cmd
-    nky sd
-    ```
-    To shutdown
-  </p>
+        <code>
+            git clone https://github.com/night0721/Night_RPC
+        </code>
+
+        To shutdown
+    </p>
+
 </details>
