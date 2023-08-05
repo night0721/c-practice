@@ -135,9 +135,9 @@
     <ClCompile Include="Driver\driver.c" />
     <ClCompile Include="Flirt.c" />
     <ClCompile Include="http.c" />
-    <ClCompile Include="IG.c" />
+    <ClCompile Include="ins.c" />
     <ClCompile Include="Driver\main.c" />
-    <ClCompile Include="json.c" />
+    <ClCompile Include="lib\json\json.c" />
     <ClCompile Include="keyboard.c" />
     <ClCompile Include="LinkedList.c" />
     <ClCompile Include="nky.c" />
@@ -150,7 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Driver\driver.h" />
-    <ClInclude Include="json.h" />
+    <ClInclude Include="lib\json\json.h" />
     <ClInclude Include="util.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

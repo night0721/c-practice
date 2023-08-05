@@ -33,10 +33,10 @@
     <ClCompile Include="Random.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="IG.c">
+    <ClCompile Include="ins.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="json.c">
+    <ClCompile Include="lib\json\json.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="http.c">
@@ -71,7 +71,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="json.h">
+    <ClInclude Include="lib\json\json.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="util.h">
