@@ -1,19 +1,36 @@
-#include <dos.h>
+#include "lib/util.h"
+#include "lib/paths.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <conio.h>
 #include <windows.h>
-#include <wchar.h>
-#include "util.h"
+#include <tlhelp32.h>
 
 HWND hwndGUI;  // Separate window handle for GUI window
+HBRUSH hBrushBtn = NULL;
+HBRUSH hBrushBackground = NULL;
 
 LRESULT CALLBACK GuiWindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
     //printf("Message received: %d\n", message);
-    switch (message) { 
+    switch (message) {
+        case WM_ERASEBKGND: {
+            HDC hdc = (HDC)wParam;
+
+            // Set the background color of the window
+            HBRUSH hBrushBackground = CreateSolidBrush(RGB(171, 132, 255));
+            RECT rc;
+            GetClientRect(hWnd, &rc);
+            FillRect(hdc, &rc, hBrushBackground);
+            DeleteObject(hBrushBackground);
+
+            return TRUE;
+        } 
+    
         case WM_COMMAND:
-            if (LOWORD(wParam) == 1) {
+            if (LOWORD(wParam) == 1) 
+            {
                 MessageBox(hWnd, "Getting data!", "Message", MB_OKCANCEL);
                 HWND hTextBox = GetDlgItem(hWnd, 2);
                 // Get the length of the text in the text box
@@ -30,12 +47,11 @@ LRESULT CALLBACK GuiWindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lP
 					}
                     strcpy(buffer, "nightkalyyy");
                 }
-                char command[256];
-                snprintf(command, sizeof(command), "python C:\\.nky\\Coding\\JavaScript\\Utilities\\IGFollowers\\fetch.py %s", buffer);
-                system(command);
+                startFetch(buffer);
                 free(buffer);
             }
-            else if (LOWORD(wParam) == 3) {
+            else if (LOWORD(wParam) == 3) 
+            {
                 HWND hTextBox = GetDlgItem(hWnd, 2);
                 // Get the length of the text in the text box
                 int length = GetWindowTextLength(hTextBox);
@@ -52,11 +68,87 @@ LRESULT CALLBACK GuiWindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lP
                     free(buffer);
                 }
             }
+            else if (LOWORD(wParam) == 4)
+            {
+                const char* path = AEX_PATH;
+
+                // CreateProcess parameters
+                STARTUPINFO startupInfo;
+                PROCESS_INFORMATION processInfo;
+                ZeroMemory(&startupInfo, sizeof(startupInfo));
+                ZeroMemory(&processInfo, sizeof(processInfo));
+                startupInfo.cb = sizeof(startupInfo);
+
+                // Create the process
+                if (CreateProcess(NULL,   // ApplicationName, use NULL to use the command line
+                    (LPSTR) path,   // Command line (typecast to LPSTR)
+                    NULL,   // Process security attributes
+                    NULL,   // Thread security attributes
+                    FALSE,  // Inherit handles from parent process
+                    0,      // Creation flags
+                    NULL,   // Use parent's environment variables
+                    NULL,   // Use parent's current directory
+                    &startupInfo,
+                    &processInfo)) {
+
+                    // Successfully started the process.
+                    // Wait for the process to complete (optional).
+                    //WaitForSingleObject(processInfo.hProcess, INFINITE);
+
+                    // Close process and thread handles
+                    CloseHandle(processInfo.hProcess);
+                    CloseHandle(processInfo.hThread);
+
+                }
+                else {
+                    // Failed to create the process.
+                    printf("Error starting process. Error code: %d\n", GetLastError());
+                    return 1;
+                }
+            }
+            else if (LOWORD(wParam) == 5)
+            {
+                // Step 1: Replace "process_name" with the name of the process you want to kill.
+                const char* process_name = "aex.exe";
+
+                HANDLE snapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
+                PROCESSENTRY32 processEntry;
+                processEntry.dwSize = sizeof(PROCESSENTRY32);
+
+                if (Process32First(snapshot, &processEntry)) {
+                    do {
+                        // Step 2: Compare process names to find the desired process.
+                        if (strcmp(processEntry.szExeFile, process_name) == 0) {
+                            // Step 3: Use OpenProcess and TerminateProcess to kill the process.
+                            HANDLE hProcess = OpenProcess(PROCESS_TERMINATE, FALSE, processEntry.th32ProcessID);
+                            char showMessage[256];
+                            if (hProcess != NULL) {
+                                TerminateProcess(hProcess, 0);
+                                CloseHandle(hProcess);
+                                char showMessage[256];
+                                snprintf(showMessage, sizeof(showMessage), "Process with PID %d killed successfully.", processEntry.th32ProcessID);
+                                MessageBox(hWnd, showMessage, "Message", MB_OKCANCEL);
+                                printf(showMessage);
+                            }
+                            else {
+                                snprintf(showMessage, sizeof(showMessage), "Failed to kill process with PID %d.", processEntry.th32ProcessID);
+                                printf(showMessage);
+                            }
+                            break;
+                        }
+                    } while (Process32Next(snapshot, &processEntry));
+                }
+                CloseHandle(snapshot);
+            }
             break;
         case WM_CLOSE:
             ShowWindow(hWnd, SW_HIDE);
             exit(1);
             break;
+        case WM_DESTROY: {
+            PostQuitMessage(0);
+            break;
+        }
     }
     return DefWindowProc(hWnd, message, wParam, lParam);
 }
@@ -67,7 +159,7 @@ void CreateGUIElements(HWND hwnd, HINSTANCE hInstance) {
         "BUTTON",           // Predefined class
         "Get Instagram Followers",         // Button text
         WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,  // Styles
-        10, 10, 500, 30,    // Position and size
+        150, 10, 200, 50,    // Position and size
         hwnd,               // Parent window
         (HMENU) 1,           // Button identifier
         hInstance,          // Instance handle
@@ -78,9 +170,29 @@ void CreateGUIElements(HWND hwnd, HINSTANCE hInstance) {
         "BUTTON",
         "Get text from text box",
         WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,
-        500, 10, 200, 30,
+        350, 10, 200, 50,
         hwnd,
-        (HMENU)3,
+        (HMENU) 3,
+        hInstance,
+        NULL
+    );
+    CreateWindow(
+        "BUTTON",
+        "Start AEX",
+        WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,
+        550, 10, 200, 50,
+        hwnd,
+        (HMENU)4,
+        hInstance,
+        NULL
+    );
+    CreateWindow(
+        "BUTTON",
+        "Kill AEX",
+        WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,
+        750, 10, 200, 50,
+        hwnd,
+        (HMENU) 5,
         hInstance,
         NULL
     );
@@ -90,14 +202,13 @@ void CreateGUIElements(HWND hwnd, HINSTANCE hInstance) {
         "EDIT",             // Predefined class
         "",                 // Text box text
         WS_VISIBLE | WS_CHILD | WS_BORDER | ES_MULTILINE | ES_AUTOVSCROLL,  // Styles
-        10, 50, 200, 100,   // Position and size
+        350, 60, 400, 100,   // Position and size
         hwnd,               // Parent window
         (HMENU) 2,               // No menu
         hInstance,          // Instance handle
         NULL                // No additional data
     );
 }
-
 
 void GuiThread() {
     HINSTANCE hInstance = GetModuleHandle(NULL);
@@ -142,7 +253,6 @@ void GuiThread() {
         DispatchMessage(&msg);
     }
 }
-
 
 int main() {
     EnableVirtualTerminalProcessing();

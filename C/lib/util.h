@@ -15,4 +15,6 @@ bool EnableVirtualTerminalProcessing(void);
 
 void RegisterAppToRegistry(const char* appname, const char* exepath);
 
+void startFetch(char* username);
+
 #endif

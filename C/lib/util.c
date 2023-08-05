@@ -2,10 +2,12 @@
 * Basic functions for C
 */
 
+#include "paths.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include <Windows.h>
+#include <windows.h>
 
 #define WINDOWS 1
 
@@ -102,5 +104,44 @@ void RegisterAppToRegistry(const char* appName, const char* exePath) {
 	}
 	else {
 		printf("Failed to open the registry key.\n");
+	}
+}
+
+void startFetch(char* username) {
+	const char* pythonPath = PY_PATH;
+	const char* scriptPath = INS_PY_PATH;
+	const char* argument = username;
+
+	// Construct the command line
+	char commandLine[1024];
+	snprintf(commandLine, sizeof(commandLine), "\"%s\" \"%s\" %s", pythonPath, scriptPath, argument);
+
+	// CreateProcess parameters
+	STARTUPINFO startupInfo;
+	PROCESS_INFORMATION processInfo;
+	ZeroMemory(&startupInfo, sizeof(startupInfo));
+	ZeroMemory(&processInfo, sizeof(processInfo));
+	startupInfo.cb = sizeof(startupInfo);
+
+	// Create the process
+	if (CreateProcess(NULL,   // ApplicationName, use NULL to use the command line
+		commandLine,   // Command line
+		NULL,   // Process security attributes
+		NULL,   // Thread security attributes
+		FALSE,  // Inherit handles from parent process
+		0,      // Creation flags
+		NULL,   // Use parent's environment variables
+		NULL,   // Use parent's current directory
+		&startupInfo,
+		&processInfo)) {
+
+		// Close process and thread handles
+		CloseHandle(processInfo.hProcess);
+		CloseHandle(processInfo.hThread);
+	}
+	else {
+		// Failed to create the process.
+		printf("Error starting process. Error code: %d\n", GetLastError());
+		return;
 	}
 }

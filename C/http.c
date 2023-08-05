@@ -1,5 +1,5 @@
-#include <Windows.h>
-#include <Winhttp.h>
+#include <windows.h>
+#include <winhttp.h>
 #include <stdio.h>
 
 #pragma comment(lib, "Winhttp.lib")

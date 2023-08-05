@@ -42,10 +42,7 @@
     <ClCompile Include="dir.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="keyboard.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="browser.c">
+    <ClCompile Include="aex.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="lib\colour.h">
@@ -69,6 +66,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Driver\driver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\paths.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

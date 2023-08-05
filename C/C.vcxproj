@@ -129,7 +129,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="browser.c" />
     <ClCompile Include="lib\colour.h" />
     <ClCompile Include="dir.c" />
     <ClCompile Include="Flirt.c" />
@@ -137,7 +136,7 @@
     <ClCompile Include="ins.c" />
     <ClCompile Include="Driver\main.c" />
     <ClCompile Include="lib\json\json.c" />
-    <ClCompile Include="keyboard.c" />
+    <ClCompile Include="aex.c" />
     <ClCompile Include="LinkedList.c" />
     <ClCompile Include="nky.c" />
     <ClCompile Include="Random.c" />
@@ -148,6 +147,7 @@
   <ItemGroup>
     <ClInclude Include="Driver\driver.h" />
     <ClInclude Include="lib\json\json.h" />
+    <ClInclude Include="lib\paths.h" />
     <ClInclude Include="lib\util.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

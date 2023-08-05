@@ -1,10 +1,13 @@
+#include "../lib/util.h"
+#include "../lib/colour.h"
+#include "driver.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
-#include <Windows.h>
+#include <windows.h>
 #include <stdbool.h>
-#include "driver.h"
-#include "../lib/colour.h"
+
 
 #define MAX_LINE_LENGTH 256
 #define MAX_DRIVERS 3
@@ -84,8 +87,7 @@ int main() {
             }
             if (first) {
 				first = false;
-                fputs("\033[A\033[2K", stdout);
-                rewind(stdout);
+                ClearLine();
 			}
             printf("\r");
             for (int i = 0; i < MAX_DRIVERS; i++) {
@@ -103,5 +105,5 @@ int main() {
 			break;
 		}
     }
-    system("pause");
+    getchar();
 }
