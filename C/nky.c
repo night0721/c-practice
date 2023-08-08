@@ -7,9 +7,11 @@
 #include <conio.h>
 #include <unistd.h>
 #include <windows.h>
+#include <time.h>
 
 int main(int argc, char** argv) {
     EnableVirtualTerminalProcessing();
+    srand(time(NULL));
 	if (argc < 2) 
 	{
 		printf(NIGHT_BLUE "NKY CLI Tool" ANSI_COLOR_RESET "\n" ANSI_COLOR_RED "Invalid command" ANSI_COLOR_RESET "\nProgram exited with code 1\n");
@@ -64,7 +66,8 @@ int main(int argc, char** argv) {
 		startFetch("nightkalyyy");
         getchar();
 		return 0;
-	} else if (strcmp(argv[1], "sd") == 0) 
+	} 
+    else if (strcmp(argv[1], "sd") == 0) 
 	{
 		system("shutdown /s /t 0");
 		return 0;
@@ -86,4 +89,20 @@ int main(int argc, char** argv) {
 			
 		}
 	}
+    else if (strcmp(argv[1], "pass") == 0)
+    {
+        int length = atoi(argv[2]);
+        char* characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890123456789~`!@#$%^&*()-_+=[]{}|/,.<>;:'";
+        char* random_string = malloc(length + 1);
+        int i;
+        printf("%d\n", sizeof(characters));
+        for (i = 0; i < length; i++) {
+            int random_index = rand() % (strlen(characters) - 1);
+            random_string[i] = characters[random_index];
+        }
+        random_string[i] = '\0';
+        printf("%s", random_string);
+        free(random_string);
+        return 0;
+    }
 }
