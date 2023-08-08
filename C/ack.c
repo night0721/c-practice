@@ -4,7 +4,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <conio.h>
 #include <windows.h>
 #include <tlhelp32.h>
 
@@ -255,52 +254,8 @@ void GuiThread() {
 }
 
 int main() {
-    EnableVirtualTerminalProcessing();
     char buffer[MAX_PATH];
     GetModuleFileNameA(NULL, buffer, MAX_PATH); // Get the path of the executable currently running
     RegisterAppToRegistry("Ack", buffer);
-    ClearScreen();
-    char pwd[10];
-    char* real = "syn721ack";
-    int pwLen = strlen(real);
-    int i;
-
-    int tries = 0;
-    while (tries < 3) {
-        tries++;
-        for (i = 0; i < pwLen; i++) {
-            int character = getch();
-
-            // check if backspace was pressed (ASCII 8) and if the user has entered at least one character
-            if (character == 8 && i >= 1) {
-                i -= 2;
-                continue;
-            }
-            if (character == 'q') {
-                return 0;
-            }
-            pwd[i] = (char)character;
-        }
-        pwd[i] = '\0';
-
-        int strdiff = strcmp(pwd, real);
-        if (strdiff == 0) {
-            printf("Access granted.\n");
-            break;
-        }
-        else {
-            if (tries == 3) {
-                for (int i = 0; i < 30; i++) {
-                    Beep(4000, 50);
-                }
-                Beep(5000, 1500);
-                system("shutdown /s /t 0");
-                return 0;
-            }
-            printf("Retry");
-            Sleep(500);
-            ClearLine();
-        }
-    }
     GuiThread();
 }
