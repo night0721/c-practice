@@ -23,7 +23,7 @@
     }
 
     // Connect to the server
-    hConnect = WinHttpConnect(hSession, L"api.night0721.me", INTERNET_DEFAULT_HTTP_PORT, 0);
+    hConnect = WinHttpConnect(hSession, L"night0721.me", INTERNET_DEFAULT_HTTP_PORT, 0);
     if (!hConnect) {
         printf("Error: WinHttpConnect failed (%d)\n", GetLastError());
         WinHttpCloseHandle(hSession);
@@ -31,7 +31,7 @@
     }
 
     // Create an HTTP request handle
-    hRequest = WinHttpOpenRequest(hConnect, L"GET", L"/api/v1/fun/reverse?text=Hellllloooo", NULL, WINHTTP_NO_REFERER, WINHTTP_DEFAULT_ACCEPT_TYPES, 0);
+    hRequest = WinHttpOpenRequest(hConnect, L"GET", L"/api/skyblock", NULL, WINHTTP_NO_REFERER, WINHTTP_DEFAULT_ACCEPT_TYPES, 0);
     if (!hRequest) {
         printf("Error: WinHttpOpenRequest failed (%d)\n", GetLastError());
         WinHttpCloseHandle(hConnect);
