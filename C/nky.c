@@ -46,7 +46,7 @@ int main(int argc, char** argv) {
 
             int strdiff = strcmp(pwd, real);
             if (strdiff == 0) {
-                printf(ANSI_COLOR_GREEN "Access granted.\n");
+                printf(ANSI_COLOR_GREEN "Access granted.\n" ANSI_COLOR_RESET);
                 break;
             }
             else {
