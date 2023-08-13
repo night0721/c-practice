@@ -43,6 +43,9 @@ LRESULT CALLBACK KeyboardHookProc(int nCode, WPARAM wParam, LPARAM lParam) {
         if (ctrlPressed && altPressed && virtualKeyCode == 'W') {
             system("\"" DISCORD_PATH "\"");
         }
+        if (ctrlPressed && altPressed && virtualKeyCode == 'A') {
+			system("wt");
+		}
     }
     return CallNextHookEx(keyboardHook, nCode, wParam, lParam);
 }
